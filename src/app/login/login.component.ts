@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import { take, map } from 'rxjs/operators';
+import { Router } from  "@angular/router";
 
 // Custom services
 import { AuthService } from '../auth/auth.service';
@@ -17,8 +19,18 @@ export class LoginComponent implements OnInit {
   }
 
   constructor(
-    public authService: AuthService
-  ) { }
+    public authService: AuthService,
+    private router: Router
+  ) {
+
+    this.authService.user$.pipe().subscribe((user) => {
+      if (user) {
+        this.router.navigate(['/home']);
+      } else {
+        this.router.navigate(['/login']);
+      }
+    })
+  }
 
   ngOnInit(): void {
   }

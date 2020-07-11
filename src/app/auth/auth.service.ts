@@ -8,20 +8,11 @@ import { User } from  'firebase';
   providedIn: 'root'
 })
 export class AuthService {
-  user;
+  user$;
 
   constructor(public  afAuth:  AngularFireAuth, public  router:  Router) {
-    // let user$ = this.afAuth.onAuthStateChanged;
-    // console.log(typeof(user$), user$)
     console.log('here');
-    this.afAuth.authState.subscribe((userAuthObj) => {
-      this.user = userAuthObj;
-      if(this.user) {
-        this.router.navigate(['/home'])
-      } else {
-        this.router.navigate(['/login'])
-      }
-    })
+    this.user$ = this.afAuth.authState;
   }
 
   async login(email: string, password: string) {
