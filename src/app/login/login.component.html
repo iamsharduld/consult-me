@@ -1,0 +1,14 @@
+<p>login works!</p>
+<div class="login-form">
+    <mat-form-field class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Ex. pat@example.com" [(ngModel)]="loginFormModel.email">
+    </mat-form-field>
+
+    <mat-form-field class="login-form">
+        <mat-label>Password</mat-label>
+        <input matInput [(ngModel)]="loginFormModel.passwd">
+    </mat-form-field>
+
+    <button type="button" (click)="onSubmit()">Submit</button>
+</div>
