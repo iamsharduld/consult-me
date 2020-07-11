@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "consult-me-1447f": {
+      "hosting": {
+        "consult-me": [
+          "consult-me-1447f"
+        ]
+      }
+    }
+  }
+}
