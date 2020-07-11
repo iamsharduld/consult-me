@@ -11,7 +11,6 @@ export class AuthService {
   user$;
 
   constructor(public  afAuth:  AngularFireAuth, public  router:  Router) {
-    console.log('here');
     this.user$ = this.afAuth.authState;
   }
 
@@ -22,10 +21,6 @@ export class AuthService {
   async logout(){
     await this.afAuth.signOut();
     this.router.navigate(['login']);
-  }
-
-  get isLoggedIn(): boolean {
-    return this.user !== null;
   }
 
 }
