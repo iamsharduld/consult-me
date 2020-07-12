@@ -13,7 +13,7 @@
             <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="logout()">Logout</button>
+            <button mat-menu-item (click)="logout(); sidenav.toggle()">Logout</button>
         </mat-menu>
     </div>
 </mat-toolbar>
