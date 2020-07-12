@@ -1,1 +1,35 @@
-<router-outlet></router-outlet>
+<mat-toolbar color="primary">
+    <button mat-button (click)="sidenav.toggle()" *ngIf="authService.user$ | async"><mat-icon aria-hidden="false">menu</mat-icon></button>
+    <span>My App</span>
+    <span class="spacer"></span>
+    <div *ngIf="authService.user$ | async">
+        <button mat-icon-button class="favorite-icon" aria-label="icon-button with heart icon">
+            <mat-icon>favorite</mat-icon>
+        </button>
+        <button mat-icon-button class="share-icon" aria-label="icon-button with share icon">
+            <mat-icon>share</mat-icon>
+        </button>
+        <button [matMenuTriggerFor]="menu" mat-icon-button class="vert-icon" aria-label="icon-button with vert icon">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="logout()">Logout</button>
+        </mat-menu>
+    </div>
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="push">
+        <mat-action-list>
+            <button mat-list-item> Save </button>
+            <mat-divider></mat-divider>
+            <button mat-list-item> Undo </button>
+            <mat-divider></mat-divider>
+          </mat-action-list>
+    </mat-sidenav>
+    
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+    
+</mat-sidenav-container>

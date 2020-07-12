@@ -14,13 +14,19 @@ export class AppComponent {
     public authService: AuthService,
     private router: Router
   ) {
+    console.log(this.authService.user$);
     this.authService.user$.pipe().subscribe((user) => {
+      console.log(user == null);
       if (user) {
         this.router.navigate(['/home']);
       } else {
         this.router.navigate(['/login']);
       }
     })
+  }
+
+  logout() {
+    this.authService.logout();
   }
   
 }
