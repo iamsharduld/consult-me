@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,16 @@ export class AppComponent {
   title = 'consult-me';
 
   constructor(
-    public authService: AuthService
-  ) {}
+    public authService: AuthService,
+    private router: Router
+  ) {
+    this.authService.user$.pipe().subscribe((user) => {
+      if (user) {
+        this.router.navigate(['/home']);
+      } else {
+        this.router.navigate(['/login']);
+      }
+    })
+  }
   
 }
