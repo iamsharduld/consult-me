@@ -22,12 +22,14 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 
 import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
+import { DiagnosisHelperComponent } from './diagnosis-helper/diagnosis-helper.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    DiagnosisHelperComponent
   ],
   imports: [
     BrowserModule,

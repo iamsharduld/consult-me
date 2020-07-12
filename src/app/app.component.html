@@ -21,7 +21,7 @@
 <mat-sidenav-container>
     <mat-sidenav #sidenav mode="push">
         <mat-action-list>
-            <button mat-list-item> Save </button>
+            <button mat-list-item (click)="diagnoseMe(); sidenav.toggle()"> Diagnose Me </button>
             <mat-divider></mat-divider>
             <button mat-list-item> Undo </button>
             <mat-divider></mat-divider>
