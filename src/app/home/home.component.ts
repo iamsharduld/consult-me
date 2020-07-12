@@ -7,6 +7,7 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  opened = false;
 
   constructor(
     public authService: AuthService
