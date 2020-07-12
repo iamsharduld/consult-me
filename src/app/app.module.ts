@@ -18,6 +18,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
@@ -41,7 +42,8 @@ import { HomeComponent } from './home/home.component';
     MatIconModule,
     MatButtonModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatToolbarModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
