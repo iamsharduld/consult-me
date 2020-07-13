@@ -1,1 +1,35 @@
-<p>diagnosis-helper works!</p>
+<mat-form-field appearance="fill">
+  <mat-label>Symptom 1</mat-label>
+  <mat-select [(ngModel)]="symptom1">
+    <mat-option *ngFor="let symptom of symptoms" [value]="symptom">
+      {{symptom}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+    <mat-label>Symptom 2</mat-label>
+    <mat-select [(ngModel)]="symptom2">
+    <mat-option *ngFor="let symptom of symptoms" [value]="symptom">
+      {{symptom}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+    <mat-label>Symptom 3</mat-label>
+    <mat-select [(ngModel)]="symptom3">
+    <mat-option *ngFor="let symptom of symptoms" [value]="symptom">
+      {{symptom}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<button mat-raised-button color="primary" (click)="getDiagnosis()">Get Diagnosis</button>
+
+
+<mat-list>
+    <mat-list-item *ngFor="let diagnosis of diagnosisList">
+      <p> {{diagnosis}} </p>
+    </mat-list-item>
+  </mat-list>

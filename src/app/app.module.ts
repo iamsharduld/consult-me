@@ -11,6 +11,8 @@ import { AuthGuard } from './auth/guard/auth.guard';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
+import { HttpClientModule } from '@angular/common/http';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
 import {MatMenuModule} from '@angular/material/menu';
@@ -19,10 +21,13 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSelectModule} from '@angular/material/select';
 
 import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
 import { DiagnosisHelperComponent } from './diagnosis-helper/diagnosis-helper.component';
+
+import { DiagnosisService } from './services/diagnosis/diagnosis.service';
 
 @NgModule({
   declarations: [
@@ -37,6 +42,7 @@ import { DiagnosisHelperComponent } from './diagnosis-helper/diagnosis-helper.co
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     MatInputModule,
@@ -45,9 +51,10 @@ import { DiagnosisHelperComponent } from './diagnosis-helper/diagnosis-helper.co
     MatButtonModule,
     MatSidenavModule,
     MatListModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatSelectModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, DiagnosisService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
