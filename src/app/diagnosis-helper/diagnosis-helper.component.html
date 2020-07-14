@@ -8,27 +8,7 @@
     </mat-select>
   </mat-form-field>
 
-  <!-- <form [formGroup]="symptomForm">
-    <div formArrayName="itemRows">
-      <div *ngFor="let itemrow of symptomForm.controls.itemRows['controls']; let i=index" [formGroupName]="i">
-        <div class="form-group">
-
-          <mat-form-field appearance="fill">
-            <mat-label>Symptom {{ i + 1 }}</mat-label>
-            <mat-select formControlName="symptom" (selectionChange)="symptomSelected($event)">
-              <mat-option *ngFor="let symptom of uiSymptomList" [value]="symptom">
-                {{symptom}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <button mat-raised-button color="primary" *ngIf="symptomForm.controls.itemRows.controls.length > 1" style="margin-left: 10px;" (click)="deleteRow(i)" class="btn btn-danger">Delete Button</button>
-        </div>
-      </div>
-    </div>
-  </form> -->
-
   <button mat-raised-button color="primary" (click)="getDiagnosis()" style="margin-left: 10px;">Get Diagnosis</button>
-  <!-- <button mat-raised-button color="primary" (click)="addNewControl()" style="margin-left: 10px;">+ Add Symptom</button> -->
   <button mat-raised-button color="primary" (click)="reset()" style="margin-left: 10px;">Reset</button>
 
   <mat-list>
