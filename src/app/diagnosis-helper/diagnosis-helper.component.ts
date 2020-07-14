@@ -16,6 +16,7 @@ export class DiagnosisHelperComponent implements OnInit {
   diagnosisList = [];
   // symptomForm: FormGroup;
   selectedSymptoms = [];
+  diagnosisRequested: boolean = false;
   // uiSymptomList = [];
 
   constructor(
@@ -58,6 +59,7 @@ export class DiagnosisHelperComponent implements OnInit {
       "symptoms": this.selectedSymptoms
     }
     this.diagnosisService.getDiagnosis(reqBody).subscribe((res) => {
+      this.diagnosisRequested = true;
       if(res['possibilities'].length == 0) {
         dialogRef.close();
         this.diagnosisList = ["No results found"]
@@ -74,5 +76,6 @@ export class DiagnosisHelperComponent implements OnInit {
   reset() {
     this.selectedSymptoms = [];
     this.diagnosisList = [];
+    this.diagnosisRequested = false;
   }
 }
