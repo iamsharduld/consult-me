@@ -16,8 +16,8 @@
     <h3>Your diagnosis</h3>
     <mat-list>
       <mat-list-item *ngFor="let diagnosis of diagnosisList; let i = index">
-        <h3 *ngIf="diagnosis != 'No results found'"> {{i+1}}. {{diagnosis}} </h3>
-        <h3 *ngIf="diagnosis == 'No results found'"> {{diagnosis}} </h3>
+        <h3 *ngIf="!noResultFound"> {{i+1}}. {{diagnosis}} </h3>
+        <h3 *ngIf="noResultFound"> {{diagnosis}} </h3>
       </mat-list-item>
     </mat-list>
   </div>
