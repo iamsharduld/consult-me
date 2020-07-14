@@ -6,10 +6,10 @@ import { AuthGuard } from './auth/guard/auth.guard';
 import { DiagnosisHelperComponent } from './diagnosis-helper/diagnosis-helper.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
+  // { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'diagnosis-helper', component: DiagnosisHelperComponent, canActivate: [AuthGuard] },
-  { path: '**', redirectTo: 'login' },
+  { path: 'diagnosis-helper', component: DiagnosisHelperComponent },
+  { path: '**', redirectTo: 'diagnosis-helper' },
 ];
 
 /* for reference
