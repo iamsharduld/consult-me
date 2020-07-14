@@ -12,9 +12,11 @@ import { AppProgressSpinnerDialogComponent } from '../app-progress-spinner-dialo
   styleUrls: ['./diagnosis-helper.component.scss']
 })
 export class DiagnosisHelperComponent implements OnInit {
-  symptoms = [];
+  allSymptomList = [];
   diagnosisList = [];
-  symptomForm: FormGroup;
+  // symptomForm: FormGroup;
+  selectedSymptoms = [];
+  // uiSymptomList = [];
 
   constructor(
     public diagnosisService: DiagnosisService,
@@ -23,18 +25,18 @@ export class DiagnosisHelperComponent implements OnInit {
   ) {}
   
   ngOnInit(): void {
-    this.symptomForm = this._fb.group({
-      itemRows: this._fb.array([this.initItemRows()])
-    });
+    // this.symptomForm = this._fb.group({
+    //   itemRows: this._fb.array([this.initItemRows()])
+    // });
 
-    console.log(this.diagnosisService)
+    // console.log(this.diagnosisService)
     let dialogRef: MatDialogRef<AppProgressSpinnerDialogComponent> = this.dialog.open(AppProgressSpinnerDialogComponent, {
       panelClass: 'transparent',
       disableClose: true
     });
     this.diagnosisService.getSymptoms().subscribe((res) => {
       dialogRef.close();
-      this.symptoms = res['items'];
+      this.allSymptomList = res['items'];
     }, err => {
       dialogRef.close();
       console.log(err)
@@ -46,17 +48,23 @@ export class DiagnosisHelperComponent implements OnInit {
       panelClass: 'transparent',
       disableClose: true
     });
-    let selectedSymptoms = [];
-    for(let i in this.symptomForm.value['itemRows']) {
-      if(this.symptomForm.value['itemRows'][i]['symptom'] == '') {
-        dialogRef.close();
-        alert("Please select all symptoms");
-        return;
-      }
-      selectedSymptoms.push(this.symptomForm.value['itemRows'][i]['symptom']);
+    // for(let i in this.symptomForm.value['itemRows']) {
+    //   if(this.symptomForm.value['itemRows'][i]['symptom'] == '') {
+    //     dialogRef.close();
+    //     alert("Please select all symptoms");
+    //     return;
+    //   }
+    //   selectedSymptoms.push(this.symptomForm.value['itemRows'][i]['symptom']);
+    // }
+
+    if(this.selectedSymptoms.length == 0){
+      dialogRef.close();
+      alert("Select at least one symptom");
+      return;
     }
+
     let reqBody = {
-      "symptoms": selectedSymptoms
+      "symptoms": this.selectedSymptoms
     }
     this.diagnosisService.getDiagnosis(reqBody).subscribe((res) => {
       if(res['possibilities'].length == 0) {
@@ -64,35 +72,44 @@ export class DiagnosisHelperComponent implements OnInit {
         this.diagnosisList = ["No results found"]
         return;
       }
-      console.log(res);
+      // console.log(res);
       this.diagnosisList = res['possibilities'];
-      console.log(this.diagnosisList, res)
+      // console.log(this.diagnosisList, res)
       dialogRef.close();
     }, err => {
+      console.log(err);
       dialogRef.close();
     })
   }
 
-  get formArr() {
-    return this.symptomForm.get('itemRows') as FormArray;
-  }
+  // get formArr() {
+  //   return this.symptomForm.get('itemRows') as FormArray;
+  // }
 
-  initItemRows() {
-    return this._fb.group({
-      symptom: ['']
-    });
-  }
+  // initItemRows() {
+  //   return this._fb.group({
+  //     symptom: ['']
+  //   });
+  // }
 
-  addNewRow() {
-    this.formArr.push(this.initItemRows());
-  }
+  // addNewRow() {
+  //   this.formArr.push(this.initItemRows());
+  // }
 
-  deleteRow(index: number) {
-    this.formArr.removeAt(index);
-  }
+  // deleteRow(index: number) {
+  //   this.formArr.removeAt(index);
+  // }
 
-  addNewControl() {
-    this.addNewRow();
-  }
+  // addNewControl() {
+  //   this.addNewRow();
+  // }
 
+  reset() {
+    // while(this.formArr.length > 0) {
+    //   this.formArr.removeAt(0);
+    // }
+    // this.addNewControl();
+    this.selectedSymptoms = [];
+    this.diagnosisList = [];
+  }
 }
