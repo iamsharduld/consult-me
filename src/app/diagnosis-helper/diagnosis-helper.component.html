@@ -9,11 +9,13 @@
   </mat-form-field>
 
   <button mat-raised-button color="primary" (click)="getDiagnosis()" style="margin-left: 10px;">Get Diagnosis</button>
+  <!-- <button mat-raised-button color="primary" (click)="addNewControl()" style="margin-left: 10px;">+ Add Symptom</button> -->
   <button mat-raised-button color="primary" (click)="reset()" style="margin-left: 10px;">Reset</button>
 
   <mat-list>
-      <mat-list-item *ngFor="let diagnosis of diagnosisList">
-        <h3> {{diagnosis}} </h3>
+      <mat-list-item *ngFor="let diagnosis of diagnosisList; let i = index">
+        <h3 *ngIf="diagnosis != 'No results found'"> {{i+1}}. {{diagnosis}} </h3>
+        <h3 *ngIf="diagnosis == 'No results found'"> {{diagnosis}} </h3>
       </mat-list-item>
   </mat-list>
 
