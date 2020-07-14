@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
     <button mat-button (click)="sidenav.toggle()" *ngIf="authService.user$ | async"><mat-icon aria-hidden="false">menu</mat-icon></button>
-    <span>My App</span>
+    <span>Diagnose Me</span>
     <span class="spacer"></span>
     <div *ngIf="authService.user$ | async">
         <button mat-icon-button class="favorite-icon" aria-label="icon-button with heart icon">
