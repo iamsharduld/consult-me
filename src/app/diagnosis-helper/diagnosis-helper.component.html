@@ -2,7 +2,7 @@
 
   <form [formGroup]="symptomForm">
     <div formArrayName="itemRows">
-      <div *ngFor="let itemrow of symptomForm.controls.itemRows.controls; let i=index" [formGroupName]="i">
+      <div *ngFor="let itemrow of symptomForm.controls.itemRows['controls']; let i=index" [formGroupName]="i">
         <div class="form-group">
 
           <mat-form-field appearance="fill">

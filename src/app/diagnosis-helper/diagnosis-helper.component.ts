@@ -48,6 +48,11 @@ export class DiagnosisHelperComponent implements OnInit {
     });
     let selectedSymptoms = [];
     for(let i in this.symptomForm.value['itemRows']) {
+      if(this.symptomForm.value['itemRows'][i]['symptom'] == '') {
+        dialogRef.close();
+        alert("Please select all symptoms");
+        return;
+      }
       selectedSymptoms.push(this.symptomForm.value['itemRows'][i]['symptom']);
     }
     let reqBody = {
