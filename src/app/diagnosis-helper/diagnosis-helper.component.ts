@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DiagnosisService } from '../services/diagnosis/diagnosis.service';
 
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
+import { FormBuilder, FormControl, FormArray, FormGroup } from '@angular/forms';
 
 import { AppProgressSpinnerDialogComponent } from '../app-progress-spinner-dialog/app-progress-spinner-dialog.component';
 
@@ -11,29 +12,22 @@ import { AppProgressSpinnerDialogComponent } from '../app-progress-spinner-dialo
   styleUrls: ['./diagnosis-helper.component.scss']
 })
 export class DiagnosisHelperComponent implements OnInit {
-  symptoms$;
-
   symptoms = [];
-  selectedSymptoms = [];
-
-  remainingSymptoms = [];
-
-  symptom1 = "";
-
-  symptom2 = "";
-
-  symptom3 = "";
-
   diagnosisList = [];
+  symptomForm: FormGroup;
 
   constructor(
     public diagnosisService: DiagnosisService,
-    private dialog: MatDialog
-  ) { }
-
+    private dialog: MatDialog,
+    private _fb: FormBuilder
+  ) {}
+  
   ngOnInit(): void {
+    this.symptomForm = this._fb.group({
+      itemRows: this._fb.array([this.initItemRows()])
+    });
+
     console.log(this.diagnosisService)
-    this.symptoms$ = this.diagnosisService.getSymptoms();
     let dialogRef: MatDialogRef<AppProgressSpinnerDialogComponent> = this.dialog.open(AppProgressSpinnerDialogComponent, {
       panelClass: 'transparent',
       disableClose: true
@@ -52,11 +46,19 @@ export class DiagnosisHelperComponent implements OnInit {
       panelClass: 'transparent',
       disableClose: true
     });
-    this.selectedSymptoms = [this.symptom1, this.symptom2, this.symptom3]
+    let selectedSymptoms = [];
+    for(let i in this.symptomForm.value['itemRows']) {
+      selectedSymptoms.push(this.symptomForm.value['itemRows'][i]['symptom']);
+    }
     let reqBody = {
-      "symptoms": this.selectedSymptoms
+      "symptoms": selectedSymptoms
     }
     this.diagnosisService.getDiagnosis(reqBody).subscribe((res) => {
+      if(res['possibilities'].length == 0) {
+        dialogRef.close();
+        this.diagnosisList = ["No results found"]
+        return;
+      }
       console.log(res);
       this.diagnosisList = res['possibilities'];
       console.log(this.diagnosisList, res)
@@ -64,6 +66,28 @@ export class DiagnosisHelperComponent implements OnInit {
     }, err => {
       dialogRef.close();
     })
+  }
+
+  get formArr() {
+    return this.symptomForm.get('itemRows') as FormArray;
+  }
+
+  initItemRows() {
+    return this._fb.group({
+      symptom: ['']
+    });
+  }
+
+  addNewRow() {
+    this.formArr.push(this.initItemRows());
+  }
+
+  deleteRow(index: number) {
+    this.formArr.removeAt(index);
+  }
+
+  addNewControl() {
+    this.addNewRow();
   }
 
 }
