@@ -22,19 +22,23 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSelectModule} from '@angular/material/select';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
 import { DiagnosisHelperComponent } from './diagnosis-helper/diagnosis-helper.component';
 
 import { DiagnosisService } from './services/diagnosis/diagnosis.service';
+import { AppProgressSpinnerDialogComponent } from './app-progress-spinner-dialog/app-progress-spinner-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    DiagnosisHelperComponent
+    DiagnosisHelperComponent,
+    AppProgressSpinnerDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +56,9 @@ import { DiagnosisService } from './services/diagnosis/diagnosis.service';
     MatSidenavModule,
     MatListModule,
     MatToolbarModule,
-    MatSelectModule
+    MatSelectModule,
+    MatProgressSpinnerModule,
+    MatDialogModule
   ],
   providers: [AuthGuard, DiagnosisService],
   bootstrap: [AppComponent]
