@@ -7,6 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth/guard/auth.guard';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpConfigInterceptor } from './interceptor/httpconfig.interceptor';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -60,7 +62,13 @@ import { AppProgressSpinnerDialogComponent } from './app-progress-spinner-dialog
     MatProgressSpinnerModule,
     MatDialogModule
   ],
-  providers: [AuthGuard, DiagnosisService],
+  providers: [AuthGuard, DiagnosisService,
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpConfigInterceptor,
+    multi: true
+    }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
