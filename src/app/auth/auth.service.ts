@@ -34,7 +34,7 @@ export class AuthService {
   }
 
   getToken() {
-    return this.http.post("http://127.0.0.1:5000/auth", {
+    return this.http.post("https://morning-caverns-92659.herokuapp.com/auth", {
       "username": "sd",
       "password": "sdpass"
     })
