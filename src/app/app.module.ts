@@ -63,11 +63,11 @@ import { AppProgressSpinnerDialogComponent } from './app-progress-spinner-dialog
     MatDialogModule
   ],
   providers: [AuthGuard, DiagnosisService,
-    {
-    provide: HTTP_INTERCEPTORS,
-    useClass: HttpConfigInterceptor,
-    multi: true
-    }
+    // {
+    // provide: HTTP_INTERCEPTORS,
+    // useClass: HttpConfigInterceptor,
+    // multi: true
+    // }
 ],
   bootstrap: [AppComponent]
 })

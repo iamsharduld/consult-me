@@ -24,9 +24,9 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    this.authService.getToken().subscribe((tokenObj) => {
-      this.authService.storeTokenInLocalStorage(tokenObj['access_token']);
-    })
+    // this.authService.getToken().subscribe((tokenObj) => {
+    //   this.authService.storeTokenInLocalStorage(tokenObj['access_token']);
+    // })
   }
 
   logout() {
