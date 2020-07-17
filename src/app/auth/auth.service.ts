@@ -37,10 +37,10 @@ export class AuthService {
   }
 
   getToken() {
-    return this.http.post("https://morning-caverns-92659.herokuapp.com/auth", {
-      "username": "sd",
-      "password": "sdpass"
-    })
+    // return this.http.post("https://morning-caverns-92659.herokuapp.com/auth", {
+    //   "username": "sd",
+    //   "password": "sdpass"
+    // })
   }
 
 }
