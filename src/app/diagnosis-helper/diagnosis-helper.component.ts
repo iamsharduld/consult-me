@@ -31,27 +31,16 @@ export class DiagnosisHelperComponent implements OnInit {
     //   itemRows: this._fb.array([this.initItemRows()])
     // });
 
-    let dialogRef: MatDialogRef<AppProgressSpinnerDialogComponent> = this.dialog.open(AppProgressSpinnerDialogComponent, {
-      panelClass: 'transparent',
-      disableClose: true
-    });
     this.diagnosisService.getSymptoms().subscribe((res) => {
-      dialogRef.close();
       this.allSymptomList = res['items'];
     }, err => {
-      dialogRef.close();
       console.log(err)
     })
   }
 
   getDiagnosis() {
-    let dialogRef: MatDialogRef<AppProgressSpinnerDialogComponent> = this.dialog.open(AppProgressSpinnerDialogComponent, {
-      panelClass: 'transparent',
-      disableClose: true
-    });
 
     if(this.selectedSymptoms.length == 0){
-      dialogRef.close();
       alert("Select at least one symptom");
       return;
     }
@@ -62,16 +51,13 @@ export class DiagnosisHelperComponent implements OnInit {
     this.diagnosisService.getDiagnosis(reqBody).subscribe((res) => {
       this.diagnosisRequested = true;
       if(res['possibilities'].length == 0) {
-        dialogRef.close();
         this.noResultFound = true;
         this.diagnosisList = ["Too many symptoms selected. Please try a different combination or contact 'shrigis@yahoo.com' for further diagnosis"]
         return;
       }
       this.diagnosisList = res['possibilities'];
-      dialogRef.close();
     }, err => {
       console.log(err);
-      dialogRef.close();
     })
   }
 

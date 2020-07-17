@@ -3,8 +3,13 @@ import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@a
 import { take, map } from 'rxjs/operators';
 import { Router } from  "@angular/router";
 
+import {MatDialog} from '@angular/material/dialog';
+
 // Custom services
 import { AuthService } from '../auth/auth.service';
+
+// Custom Componenets
+import { LoginPopupComponent } from './login-popup/login-popup.component';
 
 @Component({
   selector: 'app-login',
@@ -13,21 +18,20 @@ import { AuthService } from '../auth/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  loginFormModel = {
-    email: '',
-    passwd: ''
-  }
-
   constructor(
-    public authService: AuthService,
-    private router: Router
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
+    this.openDialog();
   }
 
-  onSubmit() {
-    this.authService.login(this.loginFormModel.email, this.loginFormModel.passwd);
+  openDialog() {
+    const dialogRef = this.dialog.open(LoginPopupComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 }

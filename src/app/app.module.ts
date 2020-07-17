@@ -33,6 +33,8 @@ import { DiagnosisHelperComponent } from './diagnosis-helper/diagnosis-helper.co
 
 import { DiagnosisService } from './services/diagnosis/diagnosis.service';
 import { AppProgressSpinnerDialogComponent } from './app-progress-spinner-dialog/app-progress-spinner-dialog.component';
+import { LoginPopupComponent } from './login/login-popup/login-popup.component';
+import { LoadingInterceptor } from './interceptor/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { AppProgressSpinnerDialogComponent } from './app-progress-spinner-dialog
     LoginComponent,
     HomeComponent,
     DiagnosisHelperComponent,
-    AppProgressSpinnerDialogComponent
+    AppProgressSpinnerDialogComponent,
+    LoginPopupComponent
   ],
   imports: [
     BrowserModule,
@@ -63,6 +66,7 @@ import { AppProgressSpinnerDialogComponent } from './app-progress-spinner-dialog
     MatDialogModule
   ],
   providers: [AuthGuard, DiagnosisService,
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
     // {
     // provide: HTTP_INTERCEPTORS,
     // useClass: HttpConfigInterceptor,

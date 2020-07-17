@@ -6,6 +6,10 @@ import { User } from  'firebase';
 
 import { HttpClient } from '@angular/common/http';
 
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
+import { AppProgressSpinnerDialogComponent } from '../app-progress-spinner-dialog/app-progress-spinner-dialog.component';
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,8 +18,7 @@ export class AuthService {
 
   constructor(
     public  afAuth:  AngularFireAuth,
-    public  router:  Router,
-    private http: HttpClient
+    public  router:  Router
     ) {
     this.user$ = this.afAuth.authState;
   }
