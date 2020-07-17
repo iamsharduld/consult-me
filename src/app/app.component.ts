@@ -14,13 +14,13 @@ export class AppComponent {
     public authService: AuthService,
     private router: Router
   ) {
-    // this.authService.user$.pipe().subscribe((user) => {
-    //   if (user) {
-    //     this.router.navigate(['/home']);
-    //   } else {
-    //     this.router.navigate(['/login']);
-    //   }
-    // })
+    this.authService.user$.pipe().subscribe((user) => {
+      if (user) {
+        this.router.navigate(['/home']);
+      } else {
+        this.router.navigate(['/login']);
+      }
+    })
   }
 
   ngOnInit() {
