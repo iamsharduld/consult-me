@@ -52,7 +52,7 @@ export class DiagnosisHelperComponent implements OnInit {
       this.diagnosisRequested = true;
       if(res['possibilities'].length == 0) {
         this.noResultFound = true;
-        this.diagnosisList = ["Too many symptoms selected. Please try a different combination or contact 'shrigis@yahoo.com' for further diagnosis"]
+        this.diagnosisList = ["Too many symptoms selected. Please try a different combination or contact 'surgerypune@gmail.com' for further diagnosis"]
         return;
       }
       this.diagnosisList = res['possibilities'];
